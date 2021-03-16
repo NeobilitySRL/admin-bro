@@ -152,7 +152,7 @@ class ApiController {
     actionContext.record = record
     const jsonWithRecord = await actionContext.action.handler(request, response, actionContext)
 
-    if (jsonWithRecord && jsonWithRecord.record && jsonWithRecord.record.recordActions) {
+    if (jsonWithRecord && jsonWithRecord.record || jsonWithRecord.record.recordActions) {
       return jsonWithRecord
     }
     throw new ConfigurationError(
